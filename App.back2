@@ -1,0 +1,556 @@
+// Import necessary libraries and components
+import React, { useState, useRef, useEffect } from 'react';
+import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Animated, Alert, Text, Share, Modal, PanResponder, Linking, ActivityIndicator } from 'react-native';
+import "react-native-gesture-handler";
+import { LayoutAnimation } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
+import SwiftBirdLogo from './assets/Swiftbird-Logo.svg';
+import SpreadIcon from './assets/Spread-Icon.svg';
+import TreeIcon from './assets/Tree-Icon.svg';
+import EmailIcon from './assets/Email-Icon.svg';
+import LottieView from 'lottie-react-native';
+import birdAnimation from './assets/data.json';
+
+
+// Main App component
+const App = () => {
+
+  // Declare state variables
+  const [uniqueID, setUniqueID] = useState('');
+  const [popupVisible, setPopupVisible] = useState(false);
+  const popupTranslateY = useRef(new Animated.Value(100)).current;
+  const overlayOpacity = useRef(new Animated.Value(0)).current;
+  const [currentText, setCurrentText] = useState('');
+  const [currentTextPart2, setCurrentTextPart2] = useState({ text: '', style: {} });
+  const textOpacity = useRef(new Animated.Value(0)).current;
+  const textTranslateY = useRef(new Animated.Value(50)).current;
+  const url = "https://www.example.com/athlete/147277666";
+  const [loading, setLoading] = useState(false);
+  // Get the unique device ID
+  useEffect(() => {
+    const deviceId = DeviceInfo.getUniqueId();
+    setUniqueID(deviceId);
+  }, []);
+
+  // Toggle popup visibility
+  useEffect(() => {
+    Animated.timing(popupTranslateY, {
+      toValue: popupVisible ? 0 : 100,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  }, [popupVisible]);
+
+  // Function to toggle the popup
+  const togglePopup = () => {
+    setPopupVisible(!popupVisible);
+    Animated.timing(overlayOpacity, {
+      toValue: !popupVisible ? 0.5 : 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  // Function to handle outside modal press and close the popup
+  const handleOutsideModalPress = () => {
+    Animated.parallel([
+      Animated.timing(popupTranslateY, {
+        toValue: 100,
+        duration: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(overlayOpacity, {
+        toValue: 0,
+        duration: 0,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setPopupVisible(false);
+    });
+  };
+
+  // Initialize the pan responder for gesture handling
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onMoveShouldSetPanResponderCapture: () => true,
+    onPanResponderRelease: (e, gestureState) => {
+      if (gestureState.dy < -100) {
+        togglePopup();
+      } else {
+        Animated.timing(popupTranslateY, {
+          toValue: 0,
+          duration: 250,
+          useNativeDriver: true,
+        }).start();
+      }
+    },
+  });
+
+// Function to handle bird press and fetch swiftbird link
+const handleBirdPress = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch(
+      `https://hopefulbamboo.world/dashboard/api/getLink/?uniq_id=${uniqueID}`,
+      {
+        redirect: 'follow', // Follow the redirection
+      }
+    );
+
+    if (response.url) {
+      Linking.openURL(response.url);
+    } else {
+      Alert.alert('Error', 'No URL found in the response');
+    }
+  } catch (error) {
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    Alert.alert('Error', 'An error occurred while fetching the link');
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+  // Function to handle sharing the app
+  const handleShare = async () => {
+    try {
+      await Share.share({
+        message: `Here's a swiftbird for you! \n\n${url}`,
+  
+      });
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Error', 'An error occurred while sharing the app');
+    }
+  };
+  const getGreeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour < 12) {
+      return 'Good morning';
+    } else {
+      return 'Good afternoon';
+    }
+  };
+  useEffect(() => {
+    let isCancelled = false;
+
+    const runTextAnimation = async (index = 0) => {
+      const texts = [
+        { text: getGreeting(), duration: 5000 },
+        { text: 'Hold for menu', duration: 3000 },
+        { text: 'Tap to swift', duration: 6000,  },
+        {
+          text: 'You',
+          duration: 3000,
+          style: { color: '#FF9900' },
+          textPart2: ' got this',
+          stylePart2: {},
+        },
+        {
+          text: 'Hold',
+          duration: 3000,
+          style: { color: '#FF9900' },
+          textPart2: ' for menu',
+          stylePart2: {},
+        },
+        {
+          text: 'Tap',
+          duration: 8000,
+          style: { color: '#FF9900' },
+          textPart2: ' to swift',
+          stylePart2: {},
+        },
+      ];
+
+      if (isCancelled) return;
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      const { text, duration, style, textPart2, stylePart2 } = texts[index];
+      setCurrentText({ text, style });
+      setCurrentTextPart2({ text: textPart2 || '', style: stylePart2 || {} });
+
+        // Move the text down (off-screen) before animating
+  textTranslateY.setValue(200);
+      // Fade in
+      await new Promise((resolve) => {
+        Animated.parallel([
+          Animated.timing(textOpacity, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(textTranslateY, {
+            toValue: 0,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+        ]).start(resolve);
+      });
+
+      if (isCancelled) return;
+
+      // Wait for the specified duration
+      await new Promise((resolve) => setTimeout(resolve, duration));
+
+      if (isCancelled) return;
+
+      // Fade out
+      await new Promise((resolve) => {
+        Animated.parallel([
+          Animated.timing(textOpacity, {
+            toValue: 0,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(textTranslateY, {
+            toValue: -50,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+        ]).start(resolve);
+      });
+
+
+      // Call the next text animation
+      if (!isCancelled) {
+        runTextAnimation((index + 1) % texts.length);
+      }
+    };
+
+    runTextAnimation();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
+  // Popup component and its content
+  const PopupContent = ({ onSpreadTheBird, onSwiftIntoWebsite, onWriteUsAnEmail }) => {
+
+    return (
+      <View style={styles.popup} >
+        <View style={styles.rectangle} />
+        <View style={styles.swiftbirdLogo}>
+          <SwiftBirdLogo width={145} height={40} />
+        </View>
+        <Text style={styles.description}>
+          A startup filtering the internet to help people find content that matters.
+        </Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={onSpreadTheBird} style={styles.button}>
+            <View style={styles.contentWrapper}>
+              <Text style={styles.buttonText}>Spread the bird</Text>
+              <SpreadIcon width={45} height={35} style={styles.buttonIcon} />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onSwiftIntoWebsite} style={styles.button}>
+            <View style={styles.contentWrapper}>
+              <Text style={styles.buttonText}>Swift into our website</Text>
+              <TreeIcon style={styles.buttonIcon} />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onWriteUsAnEmail} style={styles.button}>
+            <View style={styles.contentWrapper}>
+              <Text style={styles.buttonText}>Write us an email</Text>
+              <EmailIcon style={styles.buttonIcon} />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.termsPrivacy}>Terms & Privacy</Text>
+          <Text style={styles.footerText}>
+            <Text style={styles.humanelyIntelligent}>Humanely Intelligent</Text>
+            <Text style={styles.humanelyIntelligentPoint}>. </Text>
+          </Text>
+        </View>
+
+      </View>
+    );
+  };
+  const HomeIndicator = () => {
+    return (
+      <View
+        style={{
+          position: "absolute",
+          bottom: 5,
+          left: 0,
+          right: 0,
+          alignItems: "center",
+
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: "#979797",
+            width: 150,
+            borderRadius: 10,
+            height: 4,
+          }}
+        />
+      </View>
+    );
+  };
+
+  // Main return for the App component
+  return (
+    <View style={styles.container}>
+    <Modal
+      animationType="slide"
+      transparent
+      visible={popupVisible}
+      onRequestClose={togglePopup}
+      style={styles.modal}
+    >
+      <TouchableWithoutFeedback onPress={togglePopup}>
+        <Animated.View
+          style={[
+            styles.modalOverlay,
+            { opacity: overlayOpacity },
+          ]}
+        />
+      </TouchableWithoutFeedback>
+      <Animated.View
+        style={[
+          styles.popupContainer,
+          { transform: [{ translateY: popupTranslateY }] },
+        ]}
+      >
+        <PopupContent
+          onSpreadTheBird={handleShare}
+          onSwiftIntoWebsite={() => Linking.openURL('https://hopefulbamboo.world/')}
+          onWriteUsAnEmail={() => Linking.openURL('mailto:info@example.com')}
+        />
+      </Animated.View>
+      <HomeIndicator />
+    </Modal>
+    <HomeIndicator />
+      <View
+  style={{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    
+    left: 0,
+    right: 0,
+    top: 10,
+  }}
+>
+  <View style={{ alignItems: 'center' }}>
+    <Animated.Text
+      style={{
+        alignSelf: 'center',
+        fontSize: 28,
+        top: 150,
+        color: "#FFF",
+        fontFamily: 'Poppins-Black',
+        opacity: textOpacity,
+        transform: [{ translateY: textTranslateY }],
+        ...currentText.style,
+      }}
+    >
+      {currentText.text}
+    </Animated.Text>
+  </View>
+  <View style={{ alignItems: 'center' }}>
+    <Animated.Text
+      style={{
+        alignSelf: 'center',
+        fontSize: 28,
+        top: 150,
+        color: "#FFF",
+        fontFamily: 'Poppins-Black',
+        opacity: textOpacity,
+        transform: [{ translateY: textTranslateY }],
+        ...currentTextPart2.style,
+      }}
+    >
+      {currentTextPart2.text}
+    </Animated.Text>
+  </View>
+</View>
+
+      <View
+        style={styles.gestureView}
+        {...panResponder.panHandlers}
+      >
+<TouchableOpacity onPress={handleBirdPress}>
+  <View pointerEvents="none">
+    {loading ? (
+      <ActivityIndicator
+        size="large"
+        color="#FF9900"
+        style={{ width: 400, height: 400 }}
+      />
+    ) : (
+      <LottieView
+        source={birdAnimation}
+        style={{ ...styles.bird, width: 400, height: 400 }}
+        autoPlay
+        loop
+      />
+    )}
+  </View>
+</TouchableOpacity>
+
+
+      </View>
+    </View>
+  );
+
+};
+// Styles for the App component
+
+const styles = StyleSheet.create({
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#101a26',
+    zIndex: 10,
+  },
+  popup: {
+    backgroundColor: '#101a26',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 15,
+    alignItems: 'center',
+  },
+  rectangle: {
+    backgroundColor: '#fff',
+    width: 50,
+    borderRadius: 10,
+    height: 4,
+    marginTop: -15,
+
+  },
+  homeIndicator: {
+    backgroundColor: '#979797',
+    width: 150,
+    borderRadius: 10,
+    height: 4,
+    marginTop: -15,
+
+  },
+
+  swiftbirdLogo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 19,
+    marginBottom: 10,
+  },
+
+  buttonContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 20,
+    paddingHorizontal: 10,
+  },
+
+  button: {
+    backgroundColor: '#232e3d',
+    borderRadius: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: 60,
+    marginBottom: 15,
+  },
+  contentWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 300,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 16,
+    lineHeight: 27,
+  },
+  buttonIcon: {
+    fontSize: 40,
+    width: 50,
+    height: 50,
+  },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 40,
+  },
+  modal: {
+    flex: 1,
+    margin: 0, // Add this line to remove any default margin
+  },
+  termsPrivacy: {
+    color: '#ff9900',
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 14,
+    fontWeight: '600',
+    lineHeight: 24,
+  },
+  humanelyIntelligentPoint: {
+    color: '#ff9900',
+    fontSize: 30,
+  },
+  humanelyIntelligent: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    color: '#b7b7b7',
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 14,
+    fontWeight: '600',
+    lineHeight: 24,
+  },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
+  },
+  description:
+  {
+    fontFamily: "Poppins-SemiBold",
+    color: '#fff',
+    fontSize: 15,
+    marginTop: 10,
+    marginBottom: 15,
+    textAlign: 'center',
+    lineHeight: 25,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#060F1B',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  birdTouchable: {
+    padding: 5, 
+    backgroundColor: '#fff', 
+  },
+
+  gestureView: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+
+  bird: {
+ 
+  },
+});
+
+// Styles for the App component
+
+export default App;
