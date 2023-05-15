@@ -9,7 +9,7 @@ import { COLORS } from '../constants'; // <-- Import COLORS
 import HomeIndicator from '../components/HomeIndicator';
 
  // Popup component and its content
- const PopupContent = ({ onSpreadTheBird, onSwiftIntoWebsite, onWriteUsAnEmail, onClickTermsPrivacy,onClickHumanelyIntelligent, panHandlers }) => {
+ const PopupContent = ({ onSpreadTheBird, onSwiftIntoWebsite, onWriteUsAnEmail, onClickTermsPrivacy, panHandlers }) => {
 
   return (
     <View style={{...styles.popup, backgroundColor: COLORS.popup}} 
@@ -46,12 +46,11 @@ import HomeIndicator from '../components/HomeIndicator';
         <TouchableOpacity onPress={onClickTermsPrivacy}>
         <Text style={{...styles.termsPrivacy, color: COLORS.termsPrivacyColor}}>Terms & Privacy</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={onClickHumanelyIntelligent}>
+        
         <Text >
           <Text style={{...styles.humanelyIntelligent, color: COLORS.humanelyIntelligentColor}}>Humanely Intelligent</Text>
           <Text style={{...styles.humanelyIntelligentPoint, color: COLORS.humanelyIntelligentColorPoint}}>. </Text>
         </Text>
-        </TouchableOpacity>
       </View>
       {/* <HomeIndicator /> */}
 

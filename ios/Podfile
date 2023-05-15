@@ -1,6 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
-pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+#pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+pod 'lottie-ios', '~> 3.4.0'
 pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
 
 platform :ios, min_ios_version_supported

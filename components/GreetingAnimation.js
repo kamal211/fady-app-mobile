@@ -1,5 +1,5 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, {useRef, useEffect} from 'react';
+import { View, AppState} from 'react-native';
 import LottieView from 'lottie-react-native';
 import { useWindowDimensions } from 'react-native';
 
@@ -11,6 +11,22 @@ import { getGreetingAnimation } from '../utils/getGreetingAnimation';
 const GreetingAnimation = () => {
   const windowDimensions = useWindowDimensions();
   const screenWidth = windowDimensions.width;
+  const lottieRef = useRef(null);
+  useEffect(() => {
+    const handleAppStateChange = (nextAppState) => {
+      if (nextAppState === 'active') {
+        // Restart your bird button animation here
+        if (lottieRef.current){
+        lottieRef.current.play();
+      }
+      }
+    };
+
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
 
   return (
     <View
@@ -26,6 +42,7 @@ const GreetingAnimation = () => {
     >
       <View style={{ alignItems: 'center'}}>
         <LottieView
+          ref= {lottieRef}
           source={getGreetingAnimation()}
           autoPlay
           loop={true}

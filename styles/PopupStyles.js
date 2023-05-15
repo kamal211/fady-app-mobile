@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { RFValue } from 'react-native-responsive-fontsize';
-import { Dimensions, Platform } from 'react-native';
+import { Dimensions, Platform, PixelRatio } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-
+const normalize = (size) => {
+  const newSize = size * (screenWidth / 375);
+  return Math.round(PixelRatio.roundToNearestPixel(newSize));
+};
 const PopupStyles = StyleSheet.create({
   popup: {
    
@@ -13,7 +15,6 @@ const PopupStyles = StyleSheet.create({
     borderTopRightRadius: wp('8%'),
     paddingHorizontal: 20,
     paddingTop: wp('8%'),
-    paddingBottom: wp('5%'),
     alignItems: 'center',
   },
   rectangle: {
@@ -41,9 +42,9 @@ const PopupStyles = StyleSheet.create({
   buttonSpreadIcon: {
     ...Platform.select({
       ios: {
-      width: screenWidth * 0.14,
-      height: screenHeight * 0.04,
-      marginRight: screenWidth * -0.03,
+      width: wp('10%'),
+      height: wp('8%'),
+      marginRight: wp('-2%'),
       },
       android: {
         width: screenWidth * 0.14,
@@ -55,9 +56,9 @@ const PopupStyles = StyleSheet.create({
   buttonIcon: {
     ...Platform.select({
       ios: {
-      width: screenWidth * 0.14,
-      height: screenHeight * 0.04,
-      marginRight: screenWidth * -0.07,
+      width: wp('14%'),
+      height: wp('2%'),
+      marginRight: wp('-2%'),
       },
       android: {
         width: screenWidth * 0.14,
@@ -67,8 +68,8 @@ const PopupStyles = StyleSheet.create({
     }),
   },
   button: {
-    borderRadius: wp('4.5%'),
-    paddingVertical: hp('2.5%'),
+    borderRadius: wp('3%'),
+    paddingVertical: hp('2%'),
     paddingHorizontal: wp('6%'),
     flexDirection: 'row',
     alignItems: 'center',
@@ -84,8 +85,7 @@ const PopupStyles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: 'Poppins-SemiBold',
-    fontSize: RFValue(13, 600),
-    lineHeight: RFValue(20, 600),
+    fontSize: normalize(15),
     color: '#fff',
   },
 
@@ -94,28 +94,26 @@ const PopupStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 40,
+    marginBottom: hp('8%'),
+    marginTop: hp('-1.5%'),
   },
   modal: {
     flex: 1,
     margin: 0, // Add this line to remove any default margin
   },
-  termsPrivacy: {
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: RFValue(11, 600),
-    lineHeight: RFValue(20, 600),
-    fontWeight: '600',
-  },
+  termsPrivacy: {   
+     fontFamily: 'Poppins-SemiBold',    
+     fontSize: normalize(15),  },
+  
   humanelyIntelligentPoint: {
-    fontSize: RFValue(25, 600),
+    fontSize: normalize(35),
   },
   humanelyIntelligent: {
     flexDirection: 'row',
     alignItems: 'baseline',
     fontFamily: 'Poppins-SemiBold',
-    fontSize:  RFValue(14),
-    fontWeight: '600',
-    lineHeight: 24,
+    fontSize:  normalize(14),
+    lineHeight: 30,
   },
 
 
@@ -128,7 +126,7 @@ const PopupStyles = StyleSheet.create({
   {
     fontFamily: "Poppins-SemiBold",
     color: '#fff',
-    fontSize:  RFValue(14),
+    fontSize:  normalize(16),
     marginTop: 10,
     marginBottom: 15,
     textAlign: 'center',

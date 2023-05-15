@@ -12,13 +12,12 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-swiftbird-swiftbirdTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-swiftbird-swiftbirdTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		C9CC9B6C4BF34485ABC7B085 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21884BB2355749F39DB99A78 /* Poppins-SemiBold.ttf */; };
-		7238AC23BF3E4C1BB2D4C1AA /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF654C09317F4FF3B5458BB4 /* Poppins-Black.ttf */; };
-		F8F416C81472446E98DB6381 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 009203AE5FBD49D8AFCCBE0C /* Poppins-ExtraLight.ttf */; };
 		38FF6A6D31D54FC787794A74 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B55734F791C74B12B9E4EECF /* Poppins-Light.ttf */; };
+		7238AC23BF3E4C1BB2D4C1AA /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF654C09317F4FF3B5458BB4 /* Poppins-Black.ttf */; };
+		7699B88040F8A987B510C191 /* libPods-swiftbird-swiftbirdTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-swiftbird-swiftbirdTests.a */; };
 		9BFA24590D404048A353C1EA /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F38F35412AC489DA0E5C50D /* Poppins-Medium.ttf */; };
+		C9CC9B6C4BF34485ABC7B085 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21884BB2355749F39DB99A78 /* Poppins-SemiBold.ttf */; };
+		F8F416C81472446E98DB6381 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 009203AE5FBD49D8AFCCBE0C /* Poppins-ExtraLight.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		009203AE5FBD49D8AFCCBE0C /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* swiftbirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swiftbirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* swiftbirdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = swiftbirdTests.m; sourceTree = "<group>"; };
@@ -42,18 +42,16 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = swiftbird/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = swiftbird/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-swiftbird-swiftbirdTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-swiftbird-swiftbirdTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F38F35412AC489DA0E5C50D /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		21884BB2355749F39DB99A78 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-swiftbird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftbird.debug.xcconfig"; path = "Target Support Files/Pods-swiftbird/Pods-swiftbird.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-swiftbird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftbird.release.xcconfig"; path = "Target Support Files/Pods-swiftbird/Pods-swiftbird.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-swiftbird-swiftbirdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftbird-swiftbirdTests.debug.xcconfig"; path = "Target Support Files/Pods-swiftbird-swiftbirdTests/Pods-swiftbird-swiftbirdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-swiftbird.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-swiftbird.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = swiftbird/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-swiftbird-swiftbirdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftbird-swiftbirdTests.release.xcconfig"; path = "Target Support Files/Pods-swiftbird-swiftbirdTests/Pods-swiftbird-swiftbirdTests.release.xcconfig"; sourceTree = "<group>"; };
+		B55734F791C74B12B9E4EECF /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		21884BB2355749F39DB99A78 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EF654C09317F4FF3B5458BB4 /* Poppins-Black.ttf */ = {isa = PBXFileReference; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		009203AE5FBD49D8AFCCBE0C /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Poppins-ExtraLight.ttf"; path = "../assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B55734F791C74B12B9E4EECF /* Poppins-Light.ttf */ = {isa = PBXFileReference; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1F38F35412AC489DA0E5C50D /* Poppins-Medium.ttf */ = {isa = PBXFileReference; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EF654C09317F4FF3B5458BB4 /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +91,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		034DEEC3EB07430CAFD7A1C9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				21884BB2355749F39DB99A78 /* Poppins-SemiBold.ttf */,
+				EF654C09317F4FF3B5458BB4 /* Poppins-Black.ttf */,
+				009203AE5FBD49D8AFCCBE0C /* Poppins-ExtraLight.ttf */,
+				B55734F791C74B12B9E4EECF /* Poppins-Light.ttf */,
+				1F38F35412AC489DA0E5C50D /* Poppins-Medium.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* swiftbird */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +110,6 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = swiftbird;
@@ -134,9 +143,9 @@
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				034DEEC3EB07430CAFD7A1C9 /* Resources */,
 			);
-			indentWidth = 2;
+			indentWidth = 0;
 			sourceTree = "<group>";
-			tabWidth = 2;
+			tabWidth = 1;
 			usesTabs = 0;
 		};
 		83CBBA001A601CBA00E9B192 /* Products */ = {
@@ -158,19 +167,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		034DEEC3EB07430CAFD7A1C9 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				21884BB2355749F39DB99A78 /* Poppins-SemiBold.ttf */,
-				EF654C09317F4FF3B5458BB4 /* Poppins-Black.ttf */,
-				009203AE5FBD49D8AFCCBE0C /* Poppins-ExtraLight.ttf */,
-				B55734F791C74B12B9E4EECF /* Poppins-Light.ttf */,
-				1F38F35412AC489DA0E5C50D /* Poppins-Medium.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -266,7 +262,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				C9CC9B6C4BF34485ABC7B085 /* Poppins-SemiBold.ttf in Resources */,
 				7238AC23BF3E4C1BB2D4C1AA /* Poppins-Black.ttf in Resources */,
@@ -513,8 +508,10 @@
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-swiftbird.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 68L2HR32S5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = swiftbird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -540,8 +537,10 @@
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-swiftbird.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 68L2HR32S5;
 				INFOPLIST_FILE = swiftbird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -593,7 +592,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -609,7 +608,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -627,6 +626,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -664,7 +664,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -673,7 +673,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -690,6 +690,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

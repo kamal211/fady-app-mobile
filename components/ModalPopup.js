@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, TouchableWithoutFeedback, Animated, Linking } from 'react-native';
+import { Modal, TouchableWithoutFeedback, Animated, Linking, Alert } from 'react-native';
 import PopupContent from './Popup';
 import styles from '../styles/PopupStyles';
 import { handleShare } from '../utils/handleShare';
@@ -41,10 +41,26 @@ const ModalPopup = ({ popupVisible, setPopupVisible, popupTranslateY, overlayOpa
         <PopupContent 
         panHandlers={panHandlers} 
         onSpreadTheBird={handleShare}
-        onSwiftIntoWebsite={() => Linking.openURL('https://hopefulbamboo.world/')}
-        onWriteUsAnEmail={() => Linking.openURL('mailto:info@example.com')}
-        onClickTermsPrivacy= {() => Linking.openURL('https://hopefulbamboo.world/')}
-        onClickHumanelyIntelligent= {() => Linking.openURL('https://hopefulbamboo.world/')}
+        onSwiftIntoWebsite={() => Linking.openURL('https://www.swiftbird.app/')}
+        onWriteUsAnEmail={async () => {
+          try {
+            const canOpen = await Linking.canOpenURL('mailto:hello@swiftbird.app');
+            if (canOpen) {
+              await Linking.openURL('mailto:hello@swiftbird.app');
+            } else {
+              Alert.alert(
+                'No Email App Found',
+                'We could not find an email app on your device. Please manually send an email to hello@swiftbird.app ',
+                [{ text: 'OK' }]
+              );
+            
+            }
+          } catch (error) {
+            console.error('Error opening email:', error);
+          }
+        }}
+        onClickTermsPrivacy= {() => Linking.openURL('https://www.swiftbird.app/terms')}
+        
         />
       </Animated.View>
     </Modal>
